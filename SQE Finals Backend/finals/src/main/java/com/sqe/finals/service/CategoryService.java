@@ -23,6 +23,12 @@ public class CategoryService {
     public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
     }
+
+    public Category createCategory(String name) {
+        Category category = new Category();
+        category.setName(name);
+        return categoryRepository.save(category);
+    }
 }
 
 
