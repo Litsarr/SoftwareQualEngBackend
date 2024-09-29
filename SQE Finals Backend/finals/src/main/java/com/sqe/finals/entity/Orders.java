@@ -11,7 +11,7 @@ public class Orders {
     private Long id;
 
     @ManyToOne
-    private Cart cart;  // Assuming you have a Cart entity to link to the cart ID
+    private Cart cart;  // Cart entity to link
 
     @Column(nullable = false)
     private String contactNumber;

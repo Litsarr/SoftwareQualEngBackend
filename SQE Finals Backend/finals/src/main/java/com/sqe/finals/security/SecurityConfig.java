@@ -24,8 +24,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 )
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/login", "/error").permitAll() // Allow access to login and error pages
+                .authorizeHttpRequests(authorize -> authorize //Authorization levels configuration for admin and non-admin
+                        .requestMatchers("/login", "/error").permitAll() // Allow all users to access login and error pages
                         .requestMatchers("/admin/**").hasRole("ADMIN") // Secure admin endpoints
                         .requestMatchers("/cart/**").permitAll() // Allow all users to access cart
                         .anyRequest().permitAll() // Allow all other requests

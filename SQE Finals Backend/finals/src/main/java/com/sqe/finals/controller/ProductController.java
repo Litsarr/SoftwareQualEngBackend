@@ -18,7 +18,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    // Read all products
+    // Read all products for non-admin
     @GetMapping()
     public String getAllProducts(Model model) {
         List<Product> products = productService.getAllProducts();
@@ -27,7 +27,7 @@ public class ProductController {
         return "Number of existing products: " + products.size();
     }
 
-    // Read a specific product by ID
+    // Read a specific product by ID for non-admin
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id);

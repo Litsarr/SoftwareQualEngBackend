@@ -33,12 +33,13 @@ public class AdminController {
     @Autowired
     private CategoryService categoryService;
 
+    //Get to the dashboard
     @GetMapping("/dashboard")
     public String dashboard(Model model, HttpServletRequest request) {
         CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
         System.out.println("Current CSRF Token: " + csrfToken.getToken());
-        model.addAttribute("_csrf", csrfToken); // Make it available in the model
-        return "admin/dashboard"; // Your Thymeleaf view name
+        model.addAttribute("_csrf", csrfToken);
+        return "admin/dashboard";
     }
 
     // Create a new product
@@ -52,13 +53,24 @@ public class AdminController {
     // Update a specific product by ID
     @PutMapping("/products/{id}")
     @Transactional
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @ModelAttribute Product product, @RequestParam Long categoryId) {
+
+        Category category = categoryService.findById(categoryId);
+        if (category == null) {
+            return ResponseEntity.badRequest().body(null); // Handle case where category is not found
+        }
+
+        // Set the category to the product
+        product.setCategory(category);
+
+        // Update the product
         Product updatedProduct = productService.updateProduct(id, product);
         if (updatedProduct == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(updatedProduct);
     }
+
 
     // Delete a specific product by ID
     @DeleteMapping("/products/{id}")

@@ -29,6 +29,12 @@ public class CategoryService {
         category.setName(name);
         return categoryRepository.save(category);
     }
+
+    // Find a Category by ID
+    public Category findById(Long id) {
+        return categoryRepository.findById(id)
+                .orElse(null); // Return null if category is not found
+    }
 }
 
 

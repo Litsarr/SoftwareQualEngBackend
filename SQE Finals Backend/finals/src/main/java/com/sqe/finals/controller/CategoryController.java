@@ -18,7 +18,6 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    // Admin-only endpoint to get all categories
     @GetMapping
     public List<Category> getAllCategories() {
         return categoryService.findAllCategories();
