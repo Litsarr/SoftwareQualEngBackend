@@ -12,22 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/products")
+@RequestMapping("api/products")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-    // Create a new product
-    @PostMapping
-    @Transactional
-    public ResponseEntity<Product> addProduct(@ModelAttribute Product product) {
-        Product savedProduct = productService.saveProduct(product);
-        return ResponseEntity.ok(savedProduct);
-    }
-
     // Read all products
-    @GetMapping("/view")
+    @GetMapping()
     public String getAllProducts(Model model) {
         List<Product> products = productService.getAllProducts();
         System.out.println("Products size: " + products.size());
@@ -43,25 +35,6 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(product);
-    }
-
-    // Update a specific product by ID
-    @PutMapping("/{id}")
-    @Transactional
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        Product updatedProduct = productService.updateProduct(id, product);
-        if (updatedProduct == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(updatedProduct);
-    }
-
-    // Delete a specific product by ID
-    @DeleteMapping("/{id}")
-    @Transactional
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        productService.deleteProduct(id);
-        return ResponseEntity.noContent().build();
     }
 }
 

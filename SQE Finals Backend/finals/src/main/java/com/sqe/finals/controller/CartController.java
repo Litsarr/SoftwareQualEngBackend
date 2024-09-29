@@ -8,26 +8,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/cart")
+@RequestMapping("/api/cart")
 public class CartController {
     @Autowired
     private CartService cartService;
 
-    @GetMapping //Request to view items in the cart
+    // Request to view items in the cart
+    @GetMapping
     public Cart viewCart(HttpSession session) {
         String sessionId = session.getId();
         return cartService.viewCart(sessionId);
     }
 
+    // API request to add items to the cart
     @PostMapping("/add")
-    @Transactional//API request to add items to the cart
+    @Transactional
     public Cart addToCart(HttpSession session, @RequestParam Long productId, @RequestParam Integer quantity) {
         String sessionId = session.getId();
         return cartService.addToCart(sessionId, productId, quantity);
     }
 
+    // API request to remove items from the cart
     @DeleteMapping("/remove")
-    @Transactional//API request to remove items to the cart
+    @Transactional
     public Cart removeFromCart(HttpSession session, @RequestParam Long productId) {
         String sessionId = session.getId();
         return cartService.removeFromCart(sessionId, productId);

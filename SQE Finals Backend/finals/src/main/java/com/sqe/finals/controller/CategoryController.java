@@ -12,32 +12,15 @@ import java.util.List;
 
 //Crud functions for categories (Not really necessary tbh just good to have)
 @RestController
-@RequestMapping("/admin/categories")
+@RequestMapping("/api/categories") // Kept under the admin path
 public class CategoryController {
+
     @Autowired
     private CategoryService categoryService;
 
+    // Admin-only endpoint to get all categories
     @GetMapping
     public List<Category> getAllCategories() {
         return categoryService.findAllCategories();
     }
-
-    @PostMapping
-    @Transactional
-    public Category createCategory(@RequestParam String name, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        System.out.println("Add Category Session ID: " + session.getId());
-
-        // Log the CSRF token in the request
-        String csrfToken = request.getHeader("X-CSRF-TOKEN");
-        System.out.println("Received CSRF Token: " + csrfToken);
-        return categoryService.createCategory(name);
-    }
-
-    @DeleteMapping("/{id}")
-    @Transactional
-    public void deleteCategory(@PathVariable Long id) {
-        categoryService.deleteCategory(id);
-    }
 }
-

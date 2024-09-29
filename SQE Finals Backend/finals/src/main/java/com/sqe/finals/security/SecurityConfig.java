@@ -22,12 +22,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf
-                                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 )
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/login", "/error").permitAll() // Allow access to login and error pages
                         .requestMatchers("/admin/**").hasRole("ADMIN") // Secure admin endpoints
-                        .anyRequest().permitAll() // Allow all other requests (adjust if needed)
+                        .requestMatchers("/cart/**").permitAll() // Allow all users to access cart
+                        .anyRequest().permitAll() // Allow all other requests
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login") // Custom login page
