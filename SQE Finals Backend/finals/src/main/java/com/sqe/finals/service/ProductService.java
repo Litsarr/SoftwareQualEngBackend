@@ -8,42 +8,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {
-
     @Autowired
     private ProductRepository productRepository;
 
-    // Create a new product
-    public Product saveProduct(Product product) {
-        return productRepository.save(product);
-    }
+    @Autowired
+    private CategoryRepository categoryRepository;
 
-    // Read all products
-    public List<Product> getAllProducts() {
+    public List<Product> findAllProducts() {
         return productRepository.findAll();
     }
 
-    // Read a specific product by ID
-    public Product getProductById(Long id) {
-        Optional<Product> product = productRepository.findById(id);
-        return product.orElse(null); // Return null if not found
-    }
-
-    // Update a specific product by ID
-    public Product updateProduct(Long id, Product product) {
-        if (!productRepository.existsById(id)) {
-            return null; // Not found
+    public Product saveProduct(Product product, Long categoryId) {
+        // Fetch the category if the categoryId is provided
+        if (categoryId != null) {
+            Category category = categoryRepository.findById(categoryId)
+                    .orElseThrow(() -> new RuntimeException("Category not found"));
+            product.setCategory(category);
         }
-        product.setId(id); // Set the ID of the product to update
         return productRepository.save(product);
     }
 
-    // Delete a specific product by ID
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
+
+    public Product findProductById(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+    }
+
+    public Category getCategoryById(Long categoryId) {
+        return categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+    }
 }
+
 
