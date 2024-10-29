@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7ef21a2a-0df0-4d69-be9b-ca94a661db47" name="Changes" comment="Readding .gitignore">
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/AdminController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/CartController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/CategoryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/ErrorController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/ProductController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Cart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/CartItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Category.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/OrderStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Orders.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/CartItemRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/CartRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/CategoryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/OrderRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/ProductRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/security/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/service/CartService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/service/CategoryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/service/OrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/service/ProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Litsarr&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Litsarr/SoftwareQualEngBackend.git&quot;,
+    &quot;accountId&quot;: &quot;15877734-87ff-4ace-b049-19a324792dc9&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2mh8av09wqVUqkgRG3mB7b8ypSk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.FinalsApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;CRUD-for-Admin&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\63956\IdeaProjects\SoftwareQualEngBackend\SQE Finals Backend\finals" />
+      <recent name="C:\Users\63956\IdeaProjects\SoftwareQualEngBackend\SQE Finals Backend" />
+      <recent name="C:\Users\63956\IdeaProjects\SoftwareQualEngBackend\SQE Finals Backend\finals\src\main\resources\templates\admin" />
+      <recent name="C:\Users\63956\IdeaProjects\SoftwareQualEngBackend\SQE Finals Backend\finals\src\main\resources\templates" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7ef21a2a-0df0-4d69-be9b-ca94a661db47" name="Changes" comment="" />
+      <created>1727517515044</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727517515044</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Updated .gitignore and removed jdbc connection variables refer to drive for jbdc connection variables">
+      <option name="closed" value="true" />
+      <created>1727579378295</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727579378295</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Updated .gitignore and removed jdbc connection variables refer to drive for jbdc connection variables">
+      <option name="closed" value="true" />
+      <created>1727579464108</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727579464108</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Creation of products from admin as well as fixed CSRF tokens issue. Also included all resources to be used in the resources path.">
+      <option name="closed" value="true" />
+      <created>1727592279074</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727592279074</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Moved all admin functionalities to admin controller">
+      <option name="closed" value="true" />
+      <created>1727594292982</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727594292982</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Done all CRUD functions for admin. Authorization and authentication also done.">
+      <option name="closed" value="true" />
+      <created>1727602147735</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1727602147735</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added .gitignore">
+      <option name="closed" value="true" />
+      <created>1727602455587</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727602455587</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Readding .gitignore">
+      <option name="closed" value="true" />
+      <created>1727602749143</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727602749143</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First commit backend&#10;&#10;First commit for the SQE Finals backend.&#10;&#10;Done creating folder strucutre, entities, database connection to supabase, authentication of admin, creating controllers and services for entities, and repositories to reduce boilerplate" />
+    <MESSAGE value="Updated .gitignore and removed jdbc connection variables refer to drive for jbdc connection variables" />
+    <MESSAGE value="Creation of products from admin as well as fixed CSRF tokens issue. Also included all resources to be used in the resources path." />
+    <MESSAGE value="Moved all admin functionalities to admin controller" />
+    <MESSAGE value="Done all CRUD functions for admin. Authorization and authentication also done." />
+    <MESSAGE value="Added .gitignore" />
+    <MESSAGE value="Readding .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Readding .gitignore" />
+  </component>
+</project>

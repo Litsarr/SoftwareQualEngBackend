@@ -1,49 +1,59 @@
 package com.sqe.finals.security;
 
-
-
+import com.sqe.finals.service.CustomAdminDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.csrf.CsrfToken;
 
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final CustomAdminDetailsService customAdminDetailsService;
+
+    public SecurityConfig(CustomAdminDetailsService customAdminDetailsService) {
+        this.customAdminDetailsService = customAdminDetailsService;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // Store CSRF token in a cookie
+                        .ignoringRequestMatchers("/admin/login") // Allow login requests without CSRF
                 )
-                .authorizeHttpRequests(authorize -> authorize //Authorization levels configuration for admin and non-admin
-                        .requestMatchers("/login", "/error").permitAll() // Allow all users to access login and error pages
-                        .requestMatchers("/admin/**").hasRole("ADMIN") // Secure admin endpoints
-                        .requestMatchers("/cart/**").permitAll() // Allow all users to access cart
-                        .anyRequest().permitAll() // Allow all other requests
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/admin/login").permitAll() // Allow login for all
+                        .requestMatchers("/admin/register").hasRole("ADMIN") // Only authenticated admins can access /register
+                        .requestMatchers("/admin/**").hasRole("ADMIN") // Restrict other /admin endpoints to admins only
+                        .anyRequest().permitAll() // Permit other endpoints
                 )
-                .formLogin(formLogin -> formLogin
-                        .loginPage("/login") // Custom login page
-                        .defaultSuccessUrl("/admin/dashboard", true) // Redirect on successful login
-                        .permitAll()
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Allow sessions to be created if required
                 )
-                .logout(logout -> logout
-                        .permitAll()
-                        .logoutSuccessUrl("/login") // Redirect to login after logout
-                        .logoutUrl("/logout") // Define a specific logout endpoint
-                        .invalidateHttpSession(true) // Explicitly invalidate the session on logout
-                );
+                .addFilterAfter((request, response, chain) -> {
+                    // Log the CSRF token generated
+                    CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+                    if (csrfToken != null) {
+                        System.out.println("Generated CSRF Token: " + csrfToken.getToken());
+                    }
+                    chain.doFilter(request, response);
+                }, CsrfFilter.class); // Log after CSRF filter
 
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -51,15 +61,12 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder =
-                http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder
-                .inMemoryAuthentication()
-                .withUser("admin")
-                .password(passwordEncoder().encode("adminpassword"))
-                .roles("ADMIN");
-
-        return authenticationManagerBuilder.build();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
 }
+
+
+
+
+

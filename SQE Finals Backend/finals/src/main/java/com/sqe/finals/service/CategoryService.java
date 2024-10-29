@@ -4,37 +4,29 @@ import com.sqe.finals.entity.Category;
 import com.sqe.finals.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
+
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public List<Category> findAllCategories() {
+    public List<Category> findAll() {
         return categoryRepository.findAll();
     }
 
-    public Category saveCategory(Category category) {
+    public Optional<Category> findById(Long id) {
+        return categoryRepository.findById(id);
+    }
+
+    public Category save(Category category) {
         return categoryRepository.save(category);
     }
 
-    public void deleteCategory(Long id) {
+    public void deleteById(Long id) {
         categoryRepository.deleteById(id);
     }
-
-    public Category createCategory(String name) {
-        Category category = new Category();
-        category.setName(name);
-        return categoryRepository.save(category);
-    }
-
-    // Find a Category by ID
-    public Category findById(Long id) {
-        return categoryRepository.findById(id)
-                .orElse(null); // Return null if category is not found
-    }
 }
-
 

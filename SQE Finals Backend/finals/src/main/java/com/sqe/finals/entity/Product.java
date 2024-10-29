@@ -2,8 +2,11 @@ package com.sqe.finals.entity;
 
 import jakarta.persistence.*;
 
+import java.util.*;
+
 @Entity
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -11,13 +14,22 @@ public class Product {
     private String name;
     private String description;
     private Double price;
-    private Integer quantity;
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-    private String imageSide;
-    private String imageTop;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+    // Use a Map to store sizes and their corresponding quantities
+    @ElementCollection
+    @CollectionTable(name = "product_sizes", joinColumns = @JoinColumn(name = "product_id"))
+    @MapKeyColumn(name = "size")
+    @Column(name = "quantity")
+    private Map<String, Integer> sizes = new HashMap<>();
+
+    private String imageSide; // URL or path for the side view image
+    private String imageTop;  // URL or path for the top view image
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -51,20 +63,20 @@ public class Product {
         this.price = price;
     }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
     public Category getCategory() {
         return category;
     }
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Map<String, Integer> getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(Map<String, Integer> sizes) {
+        this.sizes = sizes;
     }
 
     public String getImageSide() {
@@ -75,10 +87,12 @@ public class Product {
         this.imageSide = imageSide;
     }
 
-    public String getImageTop() {return imageTop;
+    public String getImageTop() {
+        return imageTop;
     }
 
     public void setImageTop(String imageTop) {
         this.imageTop = imageTop;
     }
 }
+
