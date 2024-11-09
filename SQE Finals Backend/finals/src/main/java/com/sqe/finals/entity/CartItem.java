@@ -10,16 +10,16 @@ public class CartItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    private Integer quantity;
-    private Double price;
+    private int quantity;
+
+    private String size;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -36,20 +36,20 @@ public class CartItem {
         this.product = product;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getSize() {
+        return size;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public Cart getCart() {
@@ -59,5 +59,8 @@ public class CartItem {
     public void setCart(Cart cart) {
         this.cart = cart;
     }
-
 }
+
+
+
+

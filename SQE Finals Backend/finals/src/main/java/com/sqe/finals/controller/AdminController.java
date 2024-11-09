@@ -81,9 +81,23 @@ public class AdminController {
         }
     }
 
+    // Add a logout endpoint
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
+        // Invalidate the session
+        HttpSession session = request.getSession(false); // Don't create a new session
+        if (session != null) {
+            session.invalidate(); // Invalidate the session
+        }
 
+        // Remove the CSRF token cookie (if you are setting it manually)
+        Cookie cookie = new Cookie("XSRF-TOKEN", null);
+        cookie.setPath("/"); // Ensure it affects the entire application
+        cookie.setMaxAge(0); // Expire the cookie immediately
+        response.addCookie(cookie);
 
-
+        return ResponseEntity.ok("Logged out successfully");
+    }
 
 
 }
