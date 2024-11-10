@@ -1,5 +1,6 @@
 package com.sqe.finals.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -9,11 +10,11 @@ import java.util.UUID;
 @Entity
 public class Cart {
 
-
     @Id
     private UUID sessionId;  // Primary key as UUID
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @JsonManagedReference  // Manage the forward side of the relationship (Cart -> CartItem)
     private List<CartItem> items = new ArrayList<>();
 
 

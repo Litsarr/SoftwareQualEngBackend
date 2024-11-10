@@ -1,5 +1,6 @@
 package com.sqe.finals.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.*;
@@ -17,17 +18,19 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
+    @JsonBackReference  // Breaks the cycle by excluding category from serialization
     private Category category;
 
-    // Use a Map to store sizes and their corresponding quantities
     @ElementCollection
     @CollectionTable(name = "product_sizes", joinColumns = @JoinColumn(name = "product_id"))
     @MapKeyColumn(name = "size")
     @Column(name = "quantity")
     private Map<String, Integer> sizes = new HashMap<>();
 
-    private String imageSide; // URL or path for the side view image
-    private String imageTop;  // URL or path for the top view image
+    private String imageSide;
+    private String imageTop;
+
+    // Getters and Setters
 
     // Getters and Setters
 

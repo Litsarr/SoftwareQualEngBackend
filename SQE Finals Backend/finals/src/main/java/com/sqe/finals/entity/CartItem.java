@@ -1,5 +1,6 @@
 package com.sqe.finals.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +18,7 @@ public class CartItem {
     private String size;
 
     @ManyToOne
+    @JsonBackReference  // Prevent infinite recursion by ignoring this field (CartItem -> Cart)
     private Cart cart;
 
     // Getters and Setters
