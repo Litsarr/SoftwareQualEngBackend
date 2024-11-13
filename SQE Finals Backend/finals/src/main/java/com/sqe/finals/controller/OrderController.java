@@ -1,12 +1,18 @@
 package com.sqe.finals.controller;
 
-import com.sqe.finals.entity.Order;
+import com.sqe.finals.entity.Orders;
+import com.sqe.finals.entity.OrderRequestDTO;
+import com.sqe.finals.entity.OrderResponseDTO;
+import com.sqe.finals.entity.Orders;
 import com.sqe.finals.service.OrderService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/orders")
@@ -15,27 +21,24 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping
-    public ResponseEntity<List<Order>> getAllOrders() {
-        return ResponseEntity.ok(orderService.findAll());
+    @PostMapping("/checkout")
+    public ResponseEntity<Orders> checkout(@RequestBody OrderRequestDTO checkoutRequest, HttpSession session) {
+        String sessionIdStr = (String) session.getAttribute("sessionId");
+        if (sessionIdStr == null) {
+            throw new RuntimeException("Session ID not found.");
+        }
+        UUID sessionId = UUID.fromString(sessionIdStr);
+
+        Orders order = orderService.checkout(sessionId, checkoutRequest);
+        return ResponseEntity.ok(order);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
-        return orderService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        return ResponseEntity.ok(orderService.save(order));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
-        orderService.deleteById(id);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/recent")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<OrderResponseDTO>> getRecentOrders() {
+        List<OrderResponseDTO> recentOrders = orderService.getRecentOrders();
+        return ResponseEntity.ok(recentOrders);
     }
 }
+
 

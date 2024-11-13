@@ -31,7 +31,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // Store CSRF token in a cookie
-                        .ignoringRequestMatchers("/admin/login", "/cart/*", "/cart")  // Allow login requests without CSRF
+                        .ignoringRequestMatchers("/admin/login", "/cart/*", "/cart", "/orders/*")  // Allow login requests without CSRF
                 )
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/admin/login").permitAll() // Allow login for all

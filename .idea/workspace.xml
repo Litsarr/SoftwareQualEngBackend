@@ -5,14 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ef21a2a-0df0-4d69-be9b-ca94a661db47" name="Changes" comment="Readding .gitignore">
+      <change afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Orders.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/CartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/CartItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/Cart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/CartItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/CartItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/CustomerInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/OrderItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/OrderItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/controller/OrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/CustomerInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/Order.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/OrderItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/OrderItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/repository/OrderRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/repository/OrderRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/security/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/security/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/service/OrderService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,5 +1,6 @@
 package com.sqe.finals.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,15 +11,16 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    private Integer quantity;
-    private Double price;
+    private int quantity;
+    private String size;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
+    @JsonBackReference  // Prevents infinite recursion by ignoring the order reference when serializing OrderItem
+    private Orders order;
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -36,28 +38,28 @@ public class OrderItem {
         this.product = product;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getSize() {
+        return size;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setSize(String size) {
+        this.size = size;
     }
 
-    public Order getOrder() {
+    public Orders getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(Orders order) {
         this.order = order;
     }
-
 }
+

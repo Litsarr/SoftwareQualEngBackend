@@ -13,7 +13,7 @@ public class Cart {
     @Id
     private UUID sessionId;  // Primary key as UUID
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference  // Manage the forward side of the relationship (Cart -> CartItem)
     private List<CartItem> items = new ArrayList<>();
 
