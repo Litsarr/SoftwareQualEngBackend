@@ -5,21 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ef21a2a-0df0-4d69-be9b-ca94a661db47" name="Changes" comment="Readding .gitignore">
-      <change afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Orders.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/CartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/CustomerInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/Order.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/OrderItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/OrderItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/OrderItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/repository/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/OrderResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/entity/OrderResponseDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/security/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/java/com/sqe/finals/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/controller/AdminController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/controller/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/CustomerInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/Order.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/OrderItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/OrderItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/repository/OrderRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/repository/OrderRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/OrderResponseDTO$OrderItemDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/OrderResponseDTO$OrderItemDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/OrderResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/entity/OrderResponseDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/security/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/security/SecurityConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/SQE Finals Backend/finals/target/classes/com/sqe/finals/service/OrderService.class" afterDir="false" />
     </list>
@@ -39,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Refactored-CRUD-Admin" />
+        <entry key="$PROJECT_DIR$" value="Cart-Backend-Services-Done" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -74,7 +74,7 @@
     &quot;Application.FinalsApplication.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Cart-Backend-Services-Done&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Backend-Services-Done&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }

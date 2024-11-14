@@ -7,6 +7,9 @@ public class OrderResponseDTO {
     private Long orderId;
     private String contactInfo;
     private Double totalAmount;
+    private String customerName;
+    private String address;
+    private String postalCode;
     private LocalDateTime orderDate;
     private List<OrderItemDTO> orderItems;
 
@@ -26,6 +29,30 @@ public class OrderResponseDTO {
 
     public void setContactInfo(String contactInfo) {
         this.contactInfo = contactInfo;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     public Double getTotalAmount() {
@@ -57,6 +84,7 @@ public class OrderResponseDTO {
         private String productName;
         private String size;
         private int quantity;
+        private Double price;  // Added price field
 
         // Getters and Setters for OrderItemDTO
 
@@ -83,6 +111,15 @@ public class OrderResponseDTO {
         public void setQuantity(int quantity) {
             this.quantity = quantity;
         }
+
+        public Double getPrice() {  // Getter for price
+            return price;
+        }
+
+        public void setPrice(Double price) {  // Setter for price
+            this.price = price;
+        }
     }
 }
+
 

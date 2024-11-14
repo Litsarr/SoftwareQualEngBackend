@@ -21,6 +21,7 @@ public class CartController {
     @Autowired
     private HttpSession httpSession;
 
+    // Endpoint to fetch the cart of the user based on their UUID/Session ID
     @GetMapping
     public ResponseEntity<Cart> getCart(HttpSession session) {
         String sessionIdStr = (String) session.getAttribute("sessionId");
@@ -33,7 +34,7 @@ public class CartController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
+    // Endpoint to create the cart of the user based on their UUID/Session ID
     @PostMapping
     public ResponseEntity<Cart> createOrUpdateCart(@RequestBody(required = false) Cart cart, HttpSession session) {
         if (cart == null) {
@@ -50,7 +51,7 @@ public class CartController {
 
         return ResponseEntity.ok(cartService.save(cart));
     }
-
+    // Endpoint to add items to the cart
     @PostMapping("/addItem")
     public ResponseEntity<Cart> addItemToCart(@RequestBody CartItemRequest cartItemRequest, HttpSession session) {
         String sessionIdStr = (String) session.getAttribute("sessionId");
@@ -62,10 +63,7 @@ public class CartController {
         Cart updatedCart = cartService.addProductToCart(sessionId, cartItemRequest.getProductId(), cartItemRequest.getSize(), cartItemRequest.getQuantity());
         return ResponseEntity.ok(updatedCart);
     }
-
-
-
-
+    // Endpoint to add items to the cart
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCart(@PathVariable UUID id) {
         cartService.deleteById(id);  // Use UUID for delete

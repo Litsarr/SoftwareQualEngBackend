@@ -20,7 +20,7 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
-
+    //Endpoint to check out items in the cart
     @PostMapping("/checkout")
     public ResponseEntity<Orders> checkout(@RequestBody OrderRequestDTO checkoutRequest, HttpSession session) {
         String sessionIdStr = (String) session.getAttribute("sessionId");
@@ -33,6 +33,7 @@ public class OrderController {
         return ResponseEntity.ok(order);
     }
 
+    //Endpoint to fetch recent orders ADMIN-only endpoint
     @GetMapping("/recent")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<OrderResponseDTO>> getRecentOrders() {

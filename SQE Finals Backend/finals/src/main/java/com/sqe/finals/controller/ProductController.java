@@ -34,7 +34,7 @@ public class ProductController {
     @Autowired
     private ProductSizeRepository productSizeRepository;
 
-    // Create a new product
+    // Endpoint to create a new product ADMIN-ONLY endpoint
     @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
@@ -54,21 +54,21 @@ public class ProductController {
 
 
 
-    // Get all products
+    // Endpoint to fetch all the products
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         return ResponseEntity.ok(products);
     }
 
-    // Get a specific product by ID
+    // Endpoint to fetch all the products will use this for individual product page
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id);
         return ResponseEntity.ok(product);
     }
 
-    // Update an existing product
+    // Endpoint to update a product ADMIN-ONLY endpoint
     @PutMapping("/update/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
@@ -76,7 +76,7 @@ public class ProductController {
         return ResponseEntity.ok(updatedProduct);
     }
 
-    // Delete a product
+    // Endpoint to remove a product ADMIN-ONLY endpoint
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
