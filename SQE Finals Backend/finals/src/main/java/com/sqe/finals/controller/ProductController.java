@@ -2,6 +2,7 @@ package com.sqe.finals.controller;
 
 import com.sqe.finals.entity.Category;
 import com.sqe.finals.entity.Product;
+import com.sqe.finals.entity.ProductDTO;
 import com.sqe.finals.entity.ProductSize;
 import com.sqe.finals.exception.ResourceNotFoundException;
 import com.sqe.finals.repository.CategoryRepository;
@@ -15,12 +16,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+
+    private final String supabaseBaseUrl = "https://ozptbbwzmxdbmzgeyqmf.supabase.co/storage/v1/object/public/"; // Supabase public URL
 
     @Autowired
     private ProductService productService;
@@ -54,11 +58,28 @@ public class ProductController {
 
 
 
-    // Endpoint to fetch all the products
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
-        return ResponseEntity.ok(products);
+        List<ProductDTO> productDTOs = new ArrayList<>();
+
+        // Map each product to a DTO and append full image URLs
+        for (Product product : products) {
+            ProductDTO productDTO = new ProductDTO();
+            productDTO.setId(product.getId());
+            productDTO.setName(product.getName());
+            productDTO.setDescription(product.getDescription());
+            productDTO.setPrice(product.getPrice());
+            productDTO.setSizes(product.getSizes());
+
+            // Construct full image URLs
+            productDTO.setImageSideUrl(supabaseBaseUrl + product.getImageSide());
+            productDTO.setImageTopUrl(supabaseBaseUrl + product.getImageTop());
+
+            productDTOs.add(productDTO);
+        }
+
+        return ResponseEntity.ok(productDTOs);
     }
 
     // Endpoint to fetch all the products will use this for individual product page

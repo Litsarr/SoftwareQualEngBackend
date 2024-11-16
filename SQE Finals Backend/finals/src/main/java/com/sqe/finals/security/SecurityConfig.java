@@ -37,16 +37,16 @@ public class SecurityConfig {
                 .cors(cors -> cors
                         .configurationSource(request -> {
                             CorsConfiguration config = new CorsConfiguration();
-                            config.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+                            config.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Your frontend URL
                             config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                             config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
-                            config.setAllowCredentials(true);
+                            config.setAllowCredentials(true); // Allow credentials
                             return config;
                         })
                 )
-                .csrf(csrf -> csrf.disable())  // Disable CSRF since JWT is immune to CSRF attacks
+                .csrf(csrf -> csrf.disable()) // Disable CSRF for JWT
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/products", "/cart/**", "/orders/checkout", "/admin/login",  "/products/{id}", "/cart/addItem", "/orders/checkout").permitAll()
+                        .requestMatchers("/products", "/cart/**", "/orders/checkout", "/admin/login", "/products/{id}", "/cart/addItem", "/orders/checkout", "/images/upload").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
@@ -65,6 +65,7 @@ public class SecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 }
+
 
 
 
