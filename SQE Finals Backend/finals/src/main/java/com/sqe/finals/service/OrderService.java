@@ -1,9 +1,7 @@
 package com.sqe.finals.service;
 
 import com.sqe.finals.entity.*;
-import com.sqe.finals.repository.CartRepository;
-import com.sqe.finals.repository.OrderRepository;
-import com.sqe.finals.repository.ProductRepository;
+import com.sqe.finals.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +22,12 @@ public class OrderService {
 
     @Autowired
     private CartRepository cartRepository;
+
+    @Autowired
+    private CompletedOrdersRepository completedOrderRepository;
+
+    @Autowired
+    private CompletedOrdersItemRepository completedOrderItemRepository;
 
     public Orders checkout(UUID sessionId, OrderRequestDTO checkoutRequest) {
         // Fetch the cart for the given sessionId
@@ -92,6 +96,44 @@ public class OrderService {
         return order;
     }
 
+    // Method to mark order as completed and copy to the completed orders table
+    public void completeOrder(Long orderId) {
+        Orders order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        // Create a new CompletedOrders object to copy the data
+        CompletedOrders completedOrder = new CompletedOrders();
+        completedOrder.setCustomerName(order.getCustomerName());
+        completedOrder.setAddress(order.getAddress());
+        completedOrder.setPostalCode(order.getPostalCode());
+        completedOrder.setContactInfo(order.getContactInfo());
+        completedOrder.setSessionId(order.getSessionId());
+        completedOrder.setTotalAmount(order.getTotalAmount());
+        completedOrder.setOrderDate(order.getOrderDate());
+        completedOrder.setCompletedAt(LocalDateTime.now()); // Mark the completion time
+
+        // Copy the order items to the completed order items table
+        List<CompletedOrderItem> completedOrderItems = order.getOrderItems().stream()
+                .map(orderItem -> {
+                    CompletedOrderItem completedOrderItem = new CompletedOrderItem();
+                    completedOrderItem.setProductName(orderItem.getProduct().getName());
+                    completedOrderItem.setSize(orderItem.getSize());
+                    completedOrderItem.setQuantity(orderItem.getQuantity());
+                    completedOrderItem.setPrice(orderItem.getProduct().getPrice());
+                    completedOrderItem.setCompletedOrder(completedOrder); // Link to the completed order
+                    return completedOrderItem;
+                })
+                .collect(Collectors.toList());
+
+        // Set the completed items in the completed order
+        completedOrder.setCompletedOrderItems(completedOrderItems);
+
+        // Save the completed order to the repository
+        completedOrderRepository.save(completedOrder);
+
+        // Optionally, remove the order from the orders table
+        orderRepository.delete(order);
+    }
 
     public List<OrderResponseDTO> getRecentOrders() {
         List<Orders> recentOrders = orderRepository.findTop10ByOrderByOrderDateDesc();
@@ -119,7 +161,44 @@ public class OrderService {
         }).collect(Collectors.toList());
     }
 
+    public void deleteOrder(Long orderId) {
+        // Fetch the order from the repository
+        Orders order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        // Delete the order from the orders table
+        orderRepository.delete(order);
+    }
+
+    public List<CompletedOrderResponseDTO> getCompletedOrders() {
+        List<CompletedOrders> completedOrders = completedOrderRepository.findAllByOrderByCompletedAtDesc();
+        return completedOrders.stream().map(order -> {
+            CompletedOrderResponseDTO dto = new CompletedOrderResponseDTO();
+            dto.setOrderId(order.getId());
+            dto.setContactInfo(order.getContactInfo());
+            dto.setAddress(order.getAddress());
+            dto.setCustomerName(order.getCustomerName());
+            dto.setPostalCode(order.getPostalCode());
+            dto.setTotalAmount(order.getTotalAmount());
+            dto.setOrderDate(order.getOrderDate());
+            dto.setCompletedAt(order.getCompletedAt()); // Include completion date
+
+            // Mapping completed order items to DTO
+            dto.setOrderItems(order.getCompletedOrderItems().stream().map(orderItem -> {
+                CompletedOrderResponseDTO.OrderItemDTO itemDTO = new CompletedOrderResponseDTO.OrderItemDTO();
+                itemDTO.setProductName(orderItem.getProductName()); // Product name
+                itemDTO.setSize(orderItem.getSize()); // Item size
+                itemDTO.setQuantity(orderItem.getQuantity()); // Quantity of the product in the completed order
+                itemDTO.setPrice(orderItem.getPrice()); // Price from the completed order item
+                return itemDTO;
+            }).collect(Collectors.toList()));
+
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
 }
+
 
 
 
