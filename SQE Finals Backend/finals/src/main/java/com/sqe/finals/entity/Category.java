@@ -14,8 +14,15 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    @JsonManagedReference  // Handles the serialization of the products list
+    @JsonManagedReference(value = "category-products") // Specify the reference name
     private List<Product> products;
+
+    // Getters and setters
+    // ...existing code...
+
+
+    // Getters and setters
+
 
     // Constructors
     public Category() {}

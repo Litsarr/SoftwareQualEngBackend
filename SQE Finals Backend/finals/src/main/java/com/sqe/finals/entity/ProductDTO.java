@@ -11,6 +11,7 @@ public class ProductDTO {
     private Map<String, Integer> sizes;
     private String imageSideUrl;
     private String imageTopUrl;
+    private CategoryDTO category;
 
     // Getters and setters
     public Long getId() {
@@ -67,6 +68,14 @@ public class ProductDTO {
 
     public void setImageTopUrl(String imageTopUrl) {
         this.imageTopUrl = imageTopUrl;
+    }
+
+    public CategoryDTO getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryDTO category) {
+        this.category = category;
     }
 }
 

@@ -1,10 +1,13 @@
 package com.sqe.finals.security;
 
 import com.sqe.finals.service.CustomAdminDetailsService;
+import com.sqe.finals.service.ProductService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,6 +26,7 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CustomAdminDetailsService customAdminDetailsService;
 
@@ -47,10 +51,16 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for JWT
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/products", "/cart/**", "/orders/checkout", "/admin/login", "/products/{id}", "/cart/addItem", "/orders/checkout", "/images/upload").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/products/create", "/products/update/**", "/products/delete/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            logger.error("Unauthorized request - {}", authException.getMessage());
+                            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
+                        })
+                );
 
         return http.build();
     }

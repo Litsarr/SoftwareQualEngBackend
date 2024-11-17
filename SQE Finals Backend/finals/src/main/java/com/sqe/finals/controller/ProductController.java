@@ -1,15 +1,14 @@
 package com.sqe.finals.controller;
 
-import com.sqe.finals.entity.Category;
-import com.sqe.finals.entity.Product;
-import com.sqe.finals.entity.ProductDTO;
-import com.sqe.finals.entity.ProductSize;
+import com.sqe.finals.entity.*;
 import com.sqe.finals.exception.ResourceNotFoundException;
 import com.sqe.finals.repository.CategoryRepository;
 import com.sqe.finals.repository.ProductSizeRepository;
 import com.sqe.finals.service.CategoryService;
 import com.sqe.finals.service.ProductService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +22,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     private final String supabaseBaseUrl = "https://ozptbbwzmxdbmzgeyqmf.supabase.co/storage/v1/object/public/"; // Supabase public URL
 
@@ -42,7 +43,12 @@ public class ProductController {
     @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        // Fetch the category from the repository
+        // Check if the category is provided
+        if (product.getCategory() == null || product.getCategory().getId() == null) {
+            throw new IllegalArgumentException("Category ID must be provided.");
+        }
+
+        // Fetch the category from the repository using the category ID
         Long categoryId = product.getCategory().getId(); // Get the category ID from the product
 
         Category category = categoryRepository.findById(categoryId)
@@ -53,8 +59,11 @@ public class ProductController {
 
         // Save the product
         Product savedProduct = productService.createProduct(product);
+
+        // Return the saved product
         return ResponseEntity.ok(savedProduct);
     }
+
 
 
 
@@ -76,34 +85,63 @@ public class ProductController {
             productDTO.setImageSideUrl(supabaseBaseUrl + product.getImageSide());
             productDTO.setImageTopUrl(supabaseBaseUrl + product.getImageTop());
 
+            // Map category information if available
+            if (product.getCategory() != null) {
+                CategoryDTO categoryDTO = new CategoryDTO();
+                categoryDTO.setId(product.getCategory().getId());
+                categoryDTO.setName(product.getCategory().getName());
+                productDTO.setCategory(categoryDTO); // Set category info in DTO
+            }
+
             productDTOs.add(productDTO);
         }
 
         return ResponseEntity.ok(productDTOs);
     }
 
+
     // Endpoint to fetch all the products will use this for individual product page
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id);
-        return ResponseEntity.ok(product);
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(product.getId());
+        productDTO.setName(product.getName());
+        productDTO.setDescription(product.getDescription());
+        productDTO.setPrice(product.getPrice());
+        productDTO.setSizes(product.getSizes());
+
+        // Construct full image URLs
+        productDTO.setImageSideUrl(supabaseBaseUrl + product.getImageSide());
+        productDTO.setImageTopUrl(supabaseBaseUrl + product.getImageTop());
+
+        // Map category information if available
+        if (product.getCategory() != null) {
+            CategoryDTO categoryDTO = new CategoryDTO();
+            categoryDTO.setId(product.getCategory().getId());
+            categoryDTO.setName(product.getCategory().getName());
+            productDTO.setCategory(categoryDTO); // Set category info in DTO
+        }
+
+        return ResponseEntity.ok(productDTO);
     }
 
-    // Endpoint to update a product ADMIN-ONLY endpoint
-    @PutMapping("/update/{id}")
+    // Endpoint to update an existing product ADMIN-ONLY endpoint
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
         Product updatedProduct = productService.updateProduct(id, productDetails);
         return ResponseEntity.ok(updatedProduct);
     }
 
-    // Endpoint to remove a product ADMIN-ONLY endpoint
-    @DeleteMapping("/delete/{id}")
+    // Endpoint to delete a product ADMIN-ONLY endpoint
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
+
 }
 
 

@@ -1,6 +1,7 @@
 package com.sqe.finals.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.*;
@@ -18,7 +19,8 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    @JsonBackReference  // Breaks the cycle by excluding category from serialization
+    @JsonIgnoreProperties(value = {"products"}, allowSetters = true)
+    @JsonBackReference(value = "category-products") // Specify the reference name
     private Category category;
 
     @ElementCollection
@@ -29,10 +31,6 @@ public class Product {
 
     private String imageSide;
     private String imageTop;
-
-    // Getters and Setters
-
-    // Getters and Setters
 
     public Long getId() {
         return id;
