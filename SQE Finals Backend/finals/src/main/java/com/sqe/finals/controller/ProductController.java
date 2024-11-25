@@ -142,6 +142,34 @@ public class ProductController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<ProductDTO>> getProductsByCategory(@PathVariable Long categoryId) {
+        List<Product> products = productService.getProductsByCategory(categoryId);
+        List<ProductDTO> productDTOs = new ArrayList<>();
+
+        for (Product product : products) {
+            ProductDTO productDTO = new ProductDTO();
+            productDTO.setId(product.getId());
+            productDTO.setName(product.getName());
+            productDTO.setDescription(product.getDescription());
+            productDTO.setPrice(product.getPrice());
+            productDTO.setSizes(product.getSizes());
+            productDTO.setImageSideUrl(supabaseBaseUrl + product.getImageSide());
+            productDTO.setImageTopUrl(supabaseBaseUrl + product.getImageTop());
+
+            if (product.getCategory() != null) {
+                CategoryDTO categoryDTO = new CategoryDTO();
+                categoryDTO.setId(product.getCategory().getId());
+                categoryDTO.setName(product.getCategory().getName());
+                productDTO.setCategory(categoryDTO);
+            }
+
+            productDTOs.add(productDTO);
+        }
+
+        return ResponseEntity.ok(productDTOs);
+    }
+
 }
 
 

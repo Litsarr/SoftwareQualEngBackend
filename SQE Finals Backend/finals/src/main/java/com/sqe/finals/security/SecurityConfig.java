@@ -50,7 +50,7 @@ public class SecurityConfig {
                 )
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for JWT
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/products", "/cart/**", "/orders/checkout", "/admin/login", "/products/{id}", "/cart/addItem", "/orders/checkout", "/images/upload").permitAll()
+                        .requestMatchers("/products", "/cart/**", "/orders/checkout", "/admin/login", "/products/{id}", "/cart/addItem", "/orders/checkout", "/images/upload", "products/category/{categoryId}").permitAll()
                         .requestMatchers("/products/create", "/products/update/**", "/products/delete/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
