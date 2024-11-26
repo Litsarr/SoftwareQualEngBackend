@@ -24,7 +24,7 @@ public class CartService {
     private ProductRepository productRepository;  // To fetch products
 
     public Optional<Cart> findBySessionId(UUID sessionId) {
-        return cartRepository.findBySessionId(sessionId);  // Correct repository method
+        return cartRepository.findBySessionId(sessionId);
     }
 
     public Cart addProductToCart(UUID sessionId, Long productId, String size, int quantity) {
@@ -44,7 +44,7 @@ public class CartService {
         } else {
             CartItem newItem = new CartItem();
             newItem.setProduct(product);
-            newItem.setSize(size);  // Set the selected size
+            newItem.setSize(size);
             newItem.setQuantity(quantity);
             newItem.setCart(cart);
             cart.getItems().add(newItem);
@@ -53,14 +53,38 @@ public class CartService {
         return cartRepository.save(cart);
     }
 
+    public Cart updateProductQuantity(UUID sessionId, Long productId, String size, int quantity) {
+        // Fetch the cart associated with the session ID
+        Cart cart = cartRepository.findBySessionId(sessionId)
+                .orElseThrow(() -> new RuntimeException("Cart not found"));
+
+        // Find the corresponding cart item
+        CartItem cartItem = cart.getItems().stream()
+                .filter(item -> item.getProduct().getId().equals(productId) && item.getSize().equals(size))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Cart item not found"));
+
+        // Update or remove the cart item based on the quantity
+        if (quantity <= 0) {
+            cart.getItems().remove(cartItem);
+            cartItemRepository.delete(cartItem); // Remove from the database if applicable
+        } else {
+            cartItem.setQuantity(quantity);
+            cartItemRepository.save(cartItem); // Persist changes
+        }
+
+        // Save the updated cart
+        return cartRepository.save(cart);
+    }
 
     public Cart save(Cart cart) {
-        return cartRepository.save(cart);  // Save cart with UUID as sessionId
+        return cartRepository.save(cart);
     }
 
     public void deleteById(UUID id) {
-        cartRepository.deleteById(id);  // Delete cart by UUID sessionId
+        cartRepository.deleteById(id);
     }
 }
+
 
 
